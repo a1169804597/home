@@ -14,4 +14,6 @@ class Blog(models.Model):
     last_updated_time=models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return "<Blog:%s>" %self.title
-
+    #分页需要的排序
+    class Meta:
+        ordering=['-created_time']

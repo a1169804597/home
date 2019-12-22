@@ -58,6 +58,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR,'templates'),
             os.path.join(BASE_DIR,'templates')+os.path.sep+'blog',
+            BASE_DIR+os.path.sep+'blog'+os.path.sep+'templates'+os.path.sep+'blog',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -122,3 +123,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,'static'),
+]
