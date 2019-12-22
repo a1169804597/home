@@ -12,7 +12,10 @@ div.blog h3{
 div.blog p.blog-info{
     margin-bottom: 0;
 }
-
+div.paginator{
+    /*分页器集中*/
+    text-align:center ;
+}
 ul.blog-info-description{
     list-style-type: none;
     margin-bottom: 1em;
