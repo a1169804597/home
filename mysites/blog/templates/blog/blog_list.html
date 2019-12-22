@@ -33,7 +33,23 @@
                         {% endfor %}
                        </div>
                    </div>
-               </div>
+                      <ul class="pagination">
+                        <li>
+                          <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                          </a>
+                        </li>
+                          {% for page_num in page_of_blogs.paginator.page_range %}
+
+                          <li><a href="#">{{ page_num }}</a></li>
+                          {% endfor %}
+                        <li>
+                          <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                        </li>
+                      </ul>
+           </div>
             <div class="hidden-xs col-sm-4 col-md-3 col-lg-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">博客分类</div>
