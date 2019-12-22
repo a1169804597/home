@@ -35,18 +35,25 @@
                    </div>
                       <ul class="pagination">
                         <li>
-                          <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                          </a>
+                            {% if page_of_blogs.has_previous %}
+                                <a href="?page={{ page_of_blogs.previous_page_number }}" aria-label="Previous">
+                                     <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            {%else%}
+                                 <span aria-hidden="true">&laquo;</span>
+                            {% endif %}
                         </li>
                           {% for page_num in page_of_blogs.paginator.page_range %}
-
-                          <li><a href="#">{{ page_num }}</a></li>
+                          <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
                           {% endfor %}
                         <li>
-                          <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                          </a>
+                            {% if page_of_blogs.has_next %}
+                                <a href="?page={{ page_of_blogs.next_page_number }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            {%else%}
+                                <span aria-hidden="true">&raquo;</span>
+                            {% endif %}
                         </li>
                       </ul>
            </div>
