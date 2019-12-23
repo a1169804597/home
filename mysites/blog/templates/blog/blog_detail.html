@@ -21,7 +21,7 @@
                     </li>
                      <li>发表日期：{{ blog.created_time|date:"Y-m-d H:s" }}</li>
                 </ul>
-                <div class="blog-content">{{ blog.content }}</div>
+                <div class="blog-content">{{ blog.content|safe }}</div>
                 <div class="blog-more"> {#上一篇下一篇#}
                     <p>上一篇：
                         {% if previous_blog %}

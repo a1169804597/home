@@ -24,7 +24,7 @@
                                 <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
                                 {{ blog.created_time|date:"Y-m-d" }}
                             </p>
-                           <p>{{ blog.content|truncatechars:120 }}</p>
+                           <p>{{ blog.content|striptags|truncatechars:120 }}</p>
                        </div>
                         {% empty %}
                            <div class="blog">
