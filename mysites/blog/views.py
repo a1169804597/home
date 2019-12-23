@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db.models import Count
 from . models import Blog,BlogType
 
+
 # Create your views here.
 def get_blog_list_common_data(request,blogs_all_list):
     paginator=Paginator(blogs_all_list,settings.EACH_PAGE_BLOGS_NUMBER)   #每2篇进行分页
@@ -67,9 +68,16 @@ def blogs_with_date(request,year,month):
     return render_to_response('blog/blogs_with_date.html', context)
 
 def blog_detail(request,blog_pk):
+    blog = get_object_or_404(Blog, pk=blog_pk)  # 得到具体的某一篇博客
+
+    if not request.COOKIES.get('blog_%s_readed'%blog_pk):
+        blog.readed_num+=1
+        blog.save()
+
     context={}
-    blog=get_object_or_404(Blog,pk=blog_pk)                                                 #得到具体的某一篇博客
     context['previous_blog']=Blog.objects.filter(created_time__gt=blog.created_time).last() #下一条博客
     context['next_blog']=Blog.objects.filter(created_time__lt=blog.created_time).first()    #上一条博客
     context['blog']=blog
-    return render_to_response('blog_detail.html',context)
+    response= render_to_response('blog_detail.html',context)
+    response.set_cookie('blog_%s_readed'%blog_pk,'true')
+    return response
