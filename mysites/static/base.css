@@ -5,3 +5,6 @@
  body{
      margin-top: 80px!important;
  }
+ ul{
+      list-style-type: none;
+ }

@@ -2,8 +2,8 @@
 {% block title %}我的网站{% endblock %}
 
 {% block nav_blog_active %}active{% endblock %}
-{% block header_extends %}
 
+{% block header_extends %}
 {% load staticfiles %}
 <link rel="stylesheet" href="{% static 'blog/blog.css' %}">
 {% endblock %}
@@ -88,6 +88,18 @@
                     {% endfor %}
                 </ul>
                   </div>
+                </div>
+                <div class="panel panel-default"> {#日期归档#}
+                    <div class="page-header">日期归档</div>
+                    <div class="panel-body">
+                        <ul>
+                            {% for blog_date in blog_dates %}
+                                <a href="{% url 'blogs_with_date' blog_date.year blog_date.month %}">
+                                    <li>{{ blog_date|date:"Y年m月" }}</li>
+                                </a>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
