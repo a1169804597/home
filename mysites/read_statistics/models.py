@@ -26,7 +26,7 @@ class ReadNumExpandMethod():
 # 阅读详细
 class ReadDetail(models.Model):
     date=models.DateField(default=timezone.now)
-    read_num = models.IntegerField(default=0)
+    read_num = models.IntegerField(default=0)   #阅读数量
     content_type = models.ForeignKey(ContentType, on_delete=models.DO_NOTHING)  # content_type是模型的名称如blog
     object_id = models.PositiveIntegerField() # 博客的ID
     content_object = GenericForeignKey('content_type', 'object_id')   # 是把博客的阅读数量和模型封装的对象

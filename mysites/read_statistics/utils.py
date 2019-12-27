@@ -49,4 +49,24 @@ def get_seven_days_read_data(content_type):
         result=read_details.aggregate(read_num_sum=Sum('read_num'))
         read_nums.append(result['read_num_sum'] or 0)
     return read_nums ,dates
-
+#今天热门博客
+def get_today_hot_data(content_type):
+    today=timezone.now().date()
+    read_details=ReadDetail.objects.filter(content_type=content_type,date=today).order_by('-read_num')#今天阅读的博客由大到小排序
+    return read_details[:7]
+#昨天的热门博客
+def get_yestereday_hot_data(content_type):
+    today = timezone.now().date()
+    yestereday=today-datetime.timedelta(days=1)
+    read_details = ReadDetail.objects.filter(content_type=content_type, date=yestereday).order_by(
+        '-read_num')  # 今天阅读的博客由大到小排序
+    return read_details[:7]
+#一周的热门博客
+'''
+def get_7_days_hot_data(content_type):
+    today=timezone.now().date()
+    date=today-datetime.timedelta(days=7)
+    read_details=ReadDetail.objects.filter(content_type=content_type,date__lt=today,date__gte=date)\
+        .values('content_type','object_id').annotate(read_num_sum=Sum('read_num')).order_by('-read_num')
+    return read_details[:7]
+'''

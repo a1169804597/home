@@ -10,3 +10,9 @@ div#container {
         min-width: 20em;
         max-width: 30em;
 }
+div.hot-data{
+    text-align: center;      /*文本居中*/
+    margin-top: 2em;
+
+
+}
