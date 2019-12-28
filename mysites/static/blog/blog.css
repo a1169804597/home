@@ -35,3 +35,11 @@ div.page-header{
     padding: 10px 15px;
     margin: 3px 0 2px;
 }
+div.comment-area{
+    margin-top: 2em;
+
+}
+h3.comment-area-title{
+    border-bottom: 1px solid #ccc; /*下划线*/
+    padding-bottom:0.4em; /*线跟字的距离*/
+}

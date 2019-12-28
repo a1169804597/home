@@ -2,11 +2,12 @@ from django.shortcuts import get_object_or_404,render
 from django.core.paginator import Paginator
 from django.conf import settings
 from django.db.models import Count
+from django.contrib.contenttypes.models import ContentType
 
 from . models import Blog,BlogType
 from read_statistics.utils import read_statistics_one_read
+from comment.models import Comment
 
-# Create your views here.
 def get_blog_list_common_data(request,blogs_all_list):
     paginator=Paginator(blogs_all_list,settings.EACH_PAGE_BLOGS_NUMBER)   #每2篇进行分页
     page_num = request.GET.get('page', 1)  # 获取页码参数
@@ -71,10 +72,14 @@ def blogs_with_date(request,year,month):
 def blog_detail(request,blog_pk):
     blog = get_object_or_404(Blog, pk=blog_pk)  # 得到具体的某一篇博客
     read_cookies_key=read_statistics_one_read(request,blog)
+    blog_content_type=ContentType.objects.get_for_model(blog)
+    comments=Comment.objects.filter(content_type=blog_content_type,object_id=blog_pk)
+
     context={}
     context['previous_blog']=Blog.objects.filter(created_time__gt=blog.created_time).last() #下一条博客
     context['next_blog']=Blog.objects.filter(created_time__lt=blog.created_time).first()    #上一条博客
     context['blog']=blog
+    context['comments']=comments
     response= render(request,'blog_detail.html',context)
     response.set_cookie(read_cookies_key,'true')  #设置cookies为阅读标记，存在不计数
     return response
