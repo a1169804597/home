@@ -6,7 +6,7 @@
 {% block header_extends %}
     <link rel="stylesheet" href="{% static 'blog/blog.css' %}">
     <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
-    <script; type="text/javascript"; src="{% static ";ckeditor/ckeditor/ckeditor.js;" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
 {% endblock %}
 
 {# 页面内容 #}
@@ -75,7 +75,7 @@
                                 <div id="comment_{{ comment.pk }}">
                                     {{ comment.text|safe }}
                                 </div>
-                                <a href="javascript:reply({{ comment.pk }})">回复</a>
+                                <a href="javascript:reply({{ comment.pk }});">回复</a>
 
 
                                 {% for reply in comment.root_comment.all %}
@@ -87,7 +87,7 @@
                                         <div id="comment_{{ reply.pk }}">
                                             {{ reply.text|safe }}
                                         </div>
-                                        <a href="javascript:reply({{ reply.pk }})">回复</a>
+                                        <a href="javascript:reply({{ reply.pk }});">回复</a>
                                     </div>
                                 {% endfor %}
                             </div>
