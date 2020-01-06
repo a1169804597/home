@@ -52,29 +52,29 @@
             chart: { type: 'line' },
             title: { text: null },
             xAxis: {
-                categories: {{ dates|safe }},   // x 轴分类
-                tickmarkPlacement: 'on',
-                title: { text: '前7日阅读量变化'},
+                categories: {;{ dates|safe }},   // x 轴分类
+                'on',
+                title;: { '前7日阅读量变化'},
             },
-            yAxis: {
-                title: { text: null },
-                labels:{ enabled: false },
-                gridLineDashStyle: 'Dash',
+            {
+                { null },
+                { false },
+                'Dash',
             },
-            series: [{                              // 数据列
+            [{                              // 数据列
                 name: '阅读量',                     // 数据列名
                 data: {{ read_nums }}               // 数据
             }],
-            plotOptions: {
-                line: {
-                    dataLabels: {
-                        enabled: true
+            {
+                {
+                    {
+                        true
                     }
                 }
             },
-            legend: { enabled: false },
-            credits: { enabled: false },
-        };
+            { false },
+            { false },
+        }
         // 图表初始化函数
         var chart = Highcharts.chart('container', options);
     </script>
