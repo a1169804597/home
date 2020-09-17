@@ -8,8 +8,8 @@
 
 {% block header_extends %}
     <link rel="stylesheet" href="{% static 'blog/blog.css' %}">
-    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
-    <script; type="text/javascript"; src="{% static ";ckeditor/ckeditor/ckeditor.js;" %}"></script>
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
 {% endblock %}
 
 {# 页面内容 #}
@@ -26,7 +26,7 @@
                     <li>评论({% get_comment_count blog %})</li>
                 </ul>              
                 <div class="blog-content">{{ blog.content|safe }}</div>
-                <div class="like" onclick="likeChange(this, '{% get_content_type blog %}', {;{ blog.pk }})">
+                <div class="like" onclick="likeChange(this, '{% get_content_type blog %}', {{ blog.pk }})">
                     <span class="glyphicon glyphicon-thumbs-up {% get_like_status blog %}"></span>
                     <span class="liked-num">{% get_like_count blog %}</span>
                     <span>喜欢</span>
@@ -55,7 +55,7 @@
                     <h3 class="comment-area-title">提交评论</h3>
                     {% if user.is_authenticated %}
                         <form id="comment_form" action="{% url 'update_comment' %}" method="POST" style="overflow:hidden">
-                            <label>{{ user.get_nickname_or_username }}，欢迎评论~</label>
+                            <label>{{ user.username }}，欢迎评论~</label>
                             <div id="reply_content_container" style="display:none;">
                                 <p id="reply_title">回复：</p>
                                 <div id="reply_content"></div>
@@ -81,32 +81,32 @@
                         {% get_comment_list blog as comments %}
                         {% for comment in comments %}
                             <div id="root_{{ comment.pk }}" class="comment">
-                                <span>{{ comment.user.get_nickname_or_username }}</span>
+                                <span>{{ comment.user.username }}</span>
                                 <span>({{ comment.comment_time|date:"Y-m-d H:i:s" }})：</span>
                                 <div id="comment_{{ comment.pk }}">
                                     {{ comment.text|safe }}
                                 </div>
-                                <div class="like" onclick="likeChange(this, '{% get_content_type comment %}', {;{ comment.pk }})">
+                                <div class="like" onclick="likeChange(this, '{% get_content_type comment %}', {{ comment.pk }})">
                                     <span class="glyphicon glyphicon-thumbs-up {% get_like_status comment %}"></span>
                                     <span class="liked-num">{% get_like_count comment %}</span>
                                 </div>
-                                <a href="javascript:reply({{ comment.pk }})">回复</a>
+                                <a href="javascript:reply({{ comment.pk }});">回复</a>
 
                                 
                                 {% for reply in comment.root_comment.all %}
                                     <div class="reply">
-                                        <span>{{ reply.user.get_nickname_or_username }}</span>
+                                        <span>{{ reply.user.username }}</span>
                                         <span>({{ reply.comment_time|date:"Y-m-d H:i:s" }})</span>
                                         <span>回复</span>
-                                        <span>{{ reply.reply_to.get_nickname_or_username }}：</span>
+                                        <span>{{ reply.reply_to.username }}：</span>
                                         <div id="comment_{{ reply.pk }}">
                                             {{ reply.text|safe }}
                                         </div>
-                                        <div class="like" onclick="likeChange(this, '{% get_content_type reply %}', {;{ reply.pk }})">
+                                        <div class="like" onclick="likeChange(this, '{% get_content_type reply %}', {{ reply.pk }})">
                                             <span class="glyphicon glyphicon-thumbs-up {% get_like_status reply %}"></span>
                                             <span class="liked-num">{% get_like_count reply %}</span>
                                         </div>
-                                        <a href="javascript:reply({{ reply.pk }})">回复</a>
+                                        <a href="javascript:reply({{ reply.pk }});">回复</a>
                                     </div>                                    
                                 {% endfor %}
                             </div>
@@ -126,9 +126,9 @@
             var str = this;
             for (var i = 0; i < arguments.length; i++) {
                 var str = str.replace(new RegExp('\\{' + i + '\\}', 'g'), arguments[i])
-            }
+            };
             return str;
-        };
+        }
         function reply(reply_comment_id){
             // 设置值
             $('#reply_comment_id').val(reply_comment_id);
@@ -223,7 +223,7 @@
             return false;
         });
         function likeChange(obj, content_type, object_id){
-            var is_like = obj.getElementsByClassName('active').length == 0;
+            var is_like = obj.getElementsByClassName('active').length == 0
             $.ajax({
                 url: "{% url 'like_change' %}",
                 type: 'GET',
@@ -234,7 +234,7 @@
                 },
                 cache: false,
                 success: function(data){
-                    console.log(data);
+                    console.log(data)
                     if(data['status']=='SUCCESS'){
                         // 更新点赞状态
                         var element = $(obj.getElementsByClassName('glyphicon'));

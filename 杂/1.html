@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+        }
+         body, button, input, select, td, textarea a {
+                font: 12px Tahoma,Verdana,Arial,Helvetica,"\5b8b\4f53",sans-serif;
+                color: red;
+            }
+        a{
+            text-decoration: none;
+        }
+         body{
+
+            font-size: 12px;
+        }
+        .head-box{
+             background-color: #2459a2;
+             height: 44px;
+             width: 100%;
+             position: fixed;
+             top:0;
+             left: 0;
+             z-index: 1000;
+        }
+        .head-content{
+            margin: 0 auto;
+            width: 1016px;
+            height: 44px;
+            background-color: #2459a2;
+            line-height: 44px;
+            position: relative;
+        }
+         .logo{
+            background: url("images/logo.png") no-repeat 0 0;
+            height: 23px;
+            width: 121px;
+            float: left;
+            margin-top: 11px;
+            /*display: inline-block;*/
+        }
+         .action-menu{
+            float: left;
+            margin-left: 20px;
+         }
+         .action-menu a.tb{
+            color: #c0cddf;
+            margin-left: -8px;
+            padding: 0 13px 0 13px;
+            display: inline-block;
+            /*background-color: yellow;*/
+        }
+         .action-menu a.active,.action-menu a.active:hover{
+                color: #fff;
+                background-color: #204982;
+         }
+
+
+        /*content*/
+        .main-content-box{
+            background-color: gray;
+            width: 100%;
+            padding-top: 44px;
+        }
+         .main-content{
+            margin: 0 auto;
+            background-color: #fff;
+            overflow: hidden;
+            width: 960px;
+            height: auto!important;
+            min-height: 700px;
+
+            padding: 6px 28px 60px 28px;
+        }
+        .content-L{
+            float: left;
+            width: 630px;
+            /*border: 1px dashed rebeccapurple;*/
+        }
+         .child-nav,.sort-nav{
+            float: left;
+            padding: 10px;
+         }
+         .publish-btn{
+            float: right;
+            padding: 10px;
+        }
+         .top-area{
+            overflow: hidden;
+            border-bottom: 1px solid red ;
+        }
+          .child-nav .active{
+            background: url("images/tip.png") no-repeat 0 -299px;
+            color: black;
+        }
+         .child-nav a{
+            display: inline-block;
+            width: 60px;
+            height: 26px;
+            line-height: 26px;
+            text-align: center;
+            color: #369;
+            font-weight: 700;
+            margin-top: 3px;
+        }
+        .sort-nav {
+            margin-left: 144px;
+            margin-top: 10px;
+        }
+         .sort-nav .active{
+            color: #b4b4b4;
+         }
+         .sort-nav a{
+            margin-left: 10px;
+            color: darkgreen;
+        }
+          .publish-btn{
+            display: inline-block;
+            width:80px;
+            height: 18px;
+            background-color: #84a42b;
+            color: #fff;
+            line-height: 18px;
+            text-align: center;
+        }
+         .content-list .item{
+            border-bottom: 1px solid red ;
+            margin-top: 10px;
+        }
+         .item .news-pic{
+            float: right;
+            margin-top: 3px;
+            margin-left: 10px;
+        }
+          .part2{
+            padding-top: 6px;
+            color: #ccc;
+            margin-bottom: 12px;
+        }
+        .hand-icon{
+            background: url("images/icon_18_118.png") no-repeat 0 0;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            vertical-align: -4px;
+        }
+         .icon-recommend{
+              background-position: 0 -40px;
+        }
+         .icon-discuss{
+              background-position: 0 -100px;
+        }
+         .icon-collect{
+              background-position: 0 -140px;
+        }
+         .part2  .user-a span{
+              vertical-align: -4px;
+        }
+        .part2 a{
+            margin-left: 7px;
+        }
+         .part1{
+            line-height: 20px;
+        }
+         .part1 .content-source,.part1 .content-kind{
+            color:#d4d4d4 ;
+        }
+         .share-icon a{
+            background: url("images/share_icon.png");
+            height: 14px;
+            width: 17px;
+            display: inline-block;
+            vertical-align: -4px;
+            opacity: 0.3;
+        }
+         .share-site-to .share-icon a.icon-sina {
+                background-position: 0 -90px;
+            }
+
+            .share-site-to .share-icon a.icon-douban {
+                background-position: 0 -105px;
+            }
+
+            .share-site-to .share-icon a.icon-qqzone {
+                background-position: 0 -120px;
+                width: 16px;
+                height: 14px;
+            }
+
+            .share-site-to .share-icon a.icon-tenxun {
+                background-position: 0 -136px;
+            }
+
+            .share-site-to .share-icon a.icon-renren {
+
+                background-position: 0 -151px;
+
+            }
+         .share-site-to{
+            float: right;
+        }
+        .share-icon a:hover{
+            opacity: 1;
+        }
+         .page-area ul li,.ct_page_edge{
+            display: inline-block;
+            float: left;
+            color: #369;
+            height: 34px;
+            line-height: 34px;
+            text-align: center;
+            width: 34px;
+            border: 1px solid #e1e1e1;
+            border-radius: 20%;
+            margin-left: 3px;
+        }
+        .dig_lcpage{
+            margin-left: 10px;
+        }
+        .ct_page_edge{
+           width: 70px;
+        }
+        .page-area ul li:hover,.ct_page_edge:hover{
+            color: #fff!important;
+            background-color: #204982;
+        }
+         .footer-box{
+            background-color: #fff;
+             clear: both;
+        }
+        .footer-box .foot-nav {
+                padding-top: 15px;
+                text-align: center;
+                border-top: 1px solid #ccdcef;
+                position: relative;
+            }
+        .footer-box .foot-nav2{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="head-box">
+        <div class="head-content">
+            <a href="#" class="logo"></a>
+            <div class="action-menu">
+                <a href="#" class="tb active">全部</a>
+                <a href="#" class="tb">42区</a>
+                <a href="#" class="tb">段子</a>
+                <a href="#" class="tb">挨踢1024</a>
+                <a href="#" class="tb">你问我答</a>
+            </div>
+            <div class="key-search">
+                <form action="/" method="post">
+                    <input type="text" class="search-txt" autocapitalize="none">
+                    <a href="#" class="i">
+                        <span class="ico"></span>
+                    </a>
+
+                </form>
+            </div>
+            <div class="active-nav">
+                <a href="#" class="register-btn">注册</a>
+                <a href="#" class="login-btn">登录</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content-box">
+        <div class="main-content">
+            <div class="main-content">
+                <div class="content-L">
+                    <div class="top-area">
+                        <div class="child-nav">
+                            <a href="#" class="hotbtn active">最热</a>
+                            <a href="#" class="newbtn">最新</a>
+                            <a href="#" class="personbtn">人类发布</a>
+                        </div>
+                        <div class="sort-nav">
+                            <a href="#" class="sortbtn active">即时排序</a>
+                            <a href="#" class="newbtn">24小时</a>
+                            <a href="#" class="newbtn">3天</a>
+                        </div>
+                        <a href="#" class="publish-btn">
+                            <span class="n2">发布</span>
+                        </a>
+                    </div>
+
+                    <div class="content-list">
+                        <div class="item">
+                            <div class="news-pic">
+                                <img src="images/news.jpg" alt="抽屉新热榜">
+                            </div>
+                            <div class="news-content">
+                                <div class="part1">
+                                    <a href="#" class="show-content" target="_blank">
+                                        @大脸撑在小胸：刚在以色列大使馆经历史上最严的安检。过完常规扫描还有二
+                                        次安检，包里所有东西都掏出来，唇膏拧开，粉盒打开，润喉糖打开，钱包里所有卡和钱摸
+                                        一遍，纸巾摸一遍，包包链子每一个扣都仔细摸过。对方一直说还有东西但找不到，我都慌
+                                        了以为被人偷放了，最后终于从小袋角落摸出一颗不知何时掉的维生素。
+                                    </a>
+                                    <span class="content-source">-ww4,sinaimg.cn</span>
+                                    <a href="#" class="n2">
+                                        <span class="content-kind">42区</span>
+                                    </a>
+                                </div>
+                                <div class="part2">
+                                    <a href="#" class="recommend" title="推荐">
+                                        <span class="hand-icon icon-recommend"></span>
+                                        <b>4</b>
+                                    </a>
+                                    <a href="javascript:;" class="discuss">
+                                        <span class="hand-icon icon-discuss"></span>
+                                        <b>5</b>
+                                    </a>
+                                    <a href="javascript:;" class="collect" title="加入私藏">
+                                        <span class="hand-icon icon-collect"></span>
+                                        <b>私藏</b>
+                                    </a>
+                                    <a href="#" class="user-a">
+                                    <span>
+                                        <img src="images/13.png">
+                                    </span>
+                                        <b>乱太郎</b>
+                                    </a>
+                                    <apan class="left time-into">
+                                        <a class="time-a" href="#" target="_blank">
+                                            <b>4分钟前</b>
+                                        </a>
+                                        <i>入热榜</i>
+                                    </apan>
+                                    <span class="share-site-to">
+                                    <i>分享到</i>
+                                    <span class="share-icon">
+                                        <a class="icon-sina" title="分享到新浪微博" href="#"></a>
+                                        <a class="icon-douban" title="分享到豆瓣" href="#"></a>
+                                        <a class="icon-qqzone" title="分享到QQ空间" href="#"></a>
+                                        <a class="icon-renren" title="分享到人人网" href="#"></a>
+                                    </span>
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+
+                            <div class="news-pic">
+                                <img src="images/news.jpg" alt="抽屉新热榜">
+                            </div>
+
+                            <div class="news-content">
+                                <div class="part1">
+                                    <a href="#" class="show-content" target="_blank">
+                                        @大脸撑在小胸：刚在以色列大使馆经历史上最严的安检。过完常规扫描还有二
+                                        次安检，包里所有东西都掏出来，唇膏拧开，粉盒打开，润喉糖打开，钱包里所有卡和钱摸
+                                        一遍，纸巾摸一遍，包包链子每一个扣都仔细摸过。对方一直说还有东西但找不到，我都慌
+                                        了以为被人偷放了，最后终于从小袋角落摸出一颗不知何时掉的维生素。
+                                    </a>
+                                    <span class="content-source">-ww4.sinaimg.cn</span>
+                                    <a href="#" class="n2">
+                                        <span class="content-kind">42区</span>
+                                    </a>
+                                </div>
+
+                                <div class="part2">
+
+                                    <a href="#" class="recommend" title="推荐">
+                                        <span class="hand-icon icon-recommend"></span>
+                                        <b>4</b>
+                                    </a>
+
+
+                                    <a href="javascript:;" class="discuss">
+                                        <span class="hand-icon icon-discuss"></span>
+                                        <b>5</b>
+                                    </a>
+
+
+                                    <a href="javascript:;" class="collect" title="加入私藏">
+                                        <span class="hand-icon icon-collect"></span>
+                                        <b>私藏</b>
+                                    </a>
+
+
+                                    <a href="#" class="user-a">
+											<span>
+												<img src="images/13.png">
+											</span>
+                                        <b>乱太郎</b>
+                                    </a>
+
+                                    <span class="left time-into">
+										<a class="time-a" href="#" target="_blank">
+										    <b>4分钟前</b>
+										</a>
+										<i>入热榜</i>
+									</span>
+                                    <!-- 分享各微博的按钮 -->
+
+                                    <span class="share-site-to">
+                                        <i>分享到</i>
+                                        <span class="share-icon">
+                                            <a class="icon-sina" title="分享到新浪微博" href="#"></a>
+                                            <a class="icon-douban" title="分享到豆瓣" href="#"></a>
+                                            <a class="icon-qqzone" title="分享到QQ空间" href="#"></a>
+                                            <a class="icon-tenxun" title="分享到腾讯微博" href="#"></a>
+                                            <a class="icon-renren" title="分享到人人网" href="#"></a>
+
+                                        </span>
+                                    </span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="item">
+
+                            <div class="news-pic">
+                                <img src="images/news.jpg" alt="抽屉新热榜">
+                            </div>
+
+                            <div class="news-content">
+                                <div class="part1">
+                                    <a href="#" class="show-content" target="_blank">
+                                        @大脸撑在小胸：刚在以色列大使馆经历史上最严的安检。过完常规扫描还有二
+                                        次安检，包里所有东西都掏出来，唇膏拧开，粉盒打开，润喉糖打开，钱包里所有卡和钱摸
+                                        一遍，纸巾摸一遍，包包链子每一个扣都仔细摸过。对方一直说还有东西但找不到，我都慌
+                                        了以为被人偷放了，最后终于从小袋角落摸出一颗不知何时掉的维生素。
+                                    </a>
+                                    <span class="content-source">-ww4.sinaimg.cn</span>
+                                    <a href="#" class="n2">
+                                        <span class="content-kind">42区</span>
+                                    </a>
+                                </div>
+
+                                <div class="part2">
+
+                                    <a href="#" class="recommend" title="推荐">
+                                        <span class="hand-icon icon-recommend"></span>
+                                        <b>4</b>
+                                    </a>
+
+
+                                    <a href="javascript:;" class="discuss">
+                                        <span class="hand-icon icon-discuss"></span>
+                                        <b>5</b>
+                                    </a>
+
+
+                                    <a href="javascript:;" class="collect" title="加入私藏">
+                                        <span class="hand-icon icon-collect"></span>
+                                        <b>私藏</b>
+                                    </a>
+
+
+                                    <a href="#" class="user-a">
+                                                <span>
+                                                    <img src="images/13.png">
+                                                </span>
+                                        <b>乱太郎</b>
+                                    </a>
+
+                                    <span class="left time-into">
+                                            <a class="time-a" href="#" target="_blank">
+                                                <b>4分钟前</b>
+                                            </a>
+                                            <i>入热榜</i>
+                                        </span>
+                                    <!-- 分享各微博的按钮 -->
+
+                                    <span class="share-site-to">
+                                            <i>分享到</i>
+                                            <span class="share-icon">
+                                                <a class="icon-sina" title="分享到新浪微博" href="#"></a>
+                                                <a class="icon-douban" title="分享到豆瓣" href="#"></a>
+                                                <a class="icon-qqzone" title="分享到QQ空间" href="#"></a>
+                                                <a class="icon-tenxun" title="分享到腾讯微博" href="#"></a>
+                                                <a class="icon-renren" title="分享到人人网" href="#"></a>
+
+                                            </span>
+                                        </span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="item">
+
+                            <div class="news-pic">
+                                <img src="images/news.jpg" alt="抽屉新热榜">
+                            </div>
+
+                            <div class="news-content">
+                                <div class="part1">
+                                    <a href="#" class="show-content" target="_blank">
+                                        @大脸撑在小胸：刚在以色列大使馆经历史上最严的安检。过完常规扫描还有二
+                                        次安检，包里所有东西都掏出来，唇膏拧开，粉盒打开，润喉糖打开，钱包里所有卡和钱摸
+                                        一遍，纸巾摸一遍，包包链子每一个扣都仔细摸过。对方一直说还有东西但找不到，我都慌
+                                        了以为被人偷放了，最后终于从小袋角落摸出一颗不知何时掉的维生素。
+                                    </a>
+                                    <span class="content-source">-ww4.sinaimg.cn</span>
+                                    <a href="#" class="n2">
+                                        <span class="content-kind">42区</span>
+                                    </a>
+                                </div>
+
+                                <div class="part2">
+
+                                    <a href="#" class="recommend" title="推荐">
+                                        <span class="hand-icon icon-recommend"></span>
+                                        <b>4</b>
+                                    </a>
+
+
+                                    <a href="javascript:;" class="discuss">
+                                        <span class="hand-icon icon-discuss"></span>
+                                        <b>5</b>
+                                    </a>
+
+
+                                    <a href="javascript:;" class="collect" title="加入私藏">
+                                        <span class="hand-icon icon-collect"></span>
+                                        <b>私藏</b>
+                                    </a>
+
+
+                                    <a href="#" class="user-a">
+                                                <span>
+                                                    <img src="images/13.png">
+                                                </span>
+                                        <b>乱太郎</b>
+                                    </a>
+
+                                    <span class="left time-into">
+                                            <a class="time-a" href="#" target="_blank">
+                                                <b>4分钟前</b>
+                                            </a>
+                                            <i>入热榜</i>
+                                        </span>
+                                    <!-- 分享各微博的按钮 -->
+
+                                    <span class="share-site-to">
+                                            <i>分享到</i>
+                                            <span class="share-icon">
+                                                <a class="icon-sina" title="分享到新浪微博" href="#"></a>
+                                                <a class="icon-douban" title="分享到豆瓣" href="#"></a>
+                                                <a class="icon-qqzone" title="分享到QQ空间" href="#"></a>
+                                                <a class="icon-tenxun" title="分享到腾讯微博" href="#"></a>
+                                                <a class="icon-renren" title="分享到人人网" href="#"></a>
+
+                                            </span>
+                                        </span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="page-area">
+                        <ul>
+                            <li><span class="ct_pagepw">1</span></li>
+                            <li><a href="#" class="ct_pagepw">2</a></li>
+                            <li><a href="#" class="ct_pagepw">3</a></li>
+                            <li><a href="#" class="ct_pagepw">4</a></li>
+                            <li><a href="#" class="ct_pagepw">5</a></li>
+                            <li><a href="#" class="ct_pagepw">6</a></li>
+                            <li><a href="#" class="ct_pagepw">7</a></li>
+                            <li><a href="#" class="ct_pagepw">8</a></li>
+                            <li><a href="#" class="ct_pagepw">9</a></li>
+                            <li><a href="#" class="ct_pagepw">10</a></li>
+                            <li><a href="#" class="ct_page_edge">下一页</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-R">
+
+                </div>
+
+            </div>
+            <div class="footer-box">
+                <div class="foot-nav">
+                    <a href="#" target="_blank">关于我们</a>
+                    <span>|</span>
+                    <a href="#" target="_blank">联系我们</a>
+                    <span>|</span>
+                    <a href="#" target="_blank">服务条款</a>
+                    <span>|</span>
+                    <a href="#" target="_blank">隐私政策</a>
+                    <span>|</span>
+                    <a href="#" target="_blank">抽屉新热榜工具</a>
+                    <span>|</span>
+                    <a href="#" target="_blank">下载客户端</a>
+                    <span>|</span>
+                    <a href="#" target="_blank">意见与反馈</a>
+                    <span>|</span>
+                    <a href="#" target="_blank">友情链接</a>
+                    <span>|</span>
+                    <a href="#" target="_blank">公告</a>
+                    <a href="#" target="_blank" style="margin-left:0;vertical-align:-2px;">
+                        <img src="images/ct_rss.gif" width="36" height="14">
+                    </a>
+                </div>
+                <div class="foot-nav2">
+                    <a target="_blank" href="#">
+                        <img class="foot_e" src="images/footer1.gif" width="36" height="14">
+                    </a>
+                <span class="foot_d">旗下站点</span>
+                <span class="foot_a">©2016chouti.com</span>
+                <a target="_blank" href="#" class="foot_b">京ICP备09053974号-3 京公网安备 110102004562</a>
+                <div style="margin-top:6px;">版权所有：北京格致璞科技有限公司</div>
+            </div>
+        </div>
+            <input type=""></input>
+</div>
+</body>
+</html>

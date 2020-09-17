@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>同学列表</title><a href="/students/">学生</a>
+    <script type="text/javascript" src="/static/jquery-1.12.4.min.js"></script>
+    <style>
+        .hide{
+            display:none;
+        }
+        .shadow{
+            position:fixed;
+            left: 0;
+            top:0;
+            right:0;
+            bottom:0;
+            background:black;
+            opacity:0.4;
+            z-index: 999;
+        }
+        .modal{
+            z-index:1000;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            height:300px;
+            width: 400px;
+            background-color: white;
+            margin-left: -200px;
+            margin-top: -150px;
+        }
+    </style>
+</head>
+<body>
+    <p>这个班级列表</p><a href="/students/"></a>
+    <a href="/addclass/">新增班级</a>
+    <a onclick="showModal();">对话框添加</a>
+    <table>
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>班级</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for class in classes %}
+                <tr>
+                    <td>{{ class.id }}</td>
+                    <td>{{ class.title }}</td>
+                    <td><a href="/editorclass/?nid={{ class.id }}">编辑</a>|
+                        <a href="/deleteclass/?nid={{ class.id }}">删除</a>
+                    </td>
+                    <td>
+                        <a onclick="editorstudentShow(this);">对话框编辑</a>|
+                        <a onclick="deleteclassSend(this)">对话框删除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div id="shadow" class="shadow hide"></div>
+    <div id="modal" class="modal hide">
+            <input id="modal_addclass" type="text" name="modal_addclass">
+            <input type="button" value="提交" onclick="ajaxSend();"><span id="messageerror"></span>
+            <input type="button" value="返回" onclick="cancleSend();">
+    </div>
+    <!--//编辑班级-->
+    <div id="editorclass-shadow" class="shadow hide"></div>
+    <div id="editorclass-modal" class="modal hide">
+            <input id='editorclass-id' style="display: none" type="text" >
+            <input id="editorclass-title" type="text" name="modal_addclass">
+            <input type="button" value="修改" onclick="editorstudentSend();"><span id="editorstudent-messageerrorr"></span>
+            <input type="button" value="返回" onclick="editorcancleSend();">
+    </div>
+<script>
+    // 新增班级
+    function showModal(){
+        document.getElementById('shadow').classList.remove('hide');
+        document.getElementById('modal').classList.remove('hide');
+    }
+    function ajaxSend(){
+        $.ajax({
+            url:'/modal_addclass/',
+            type:'POST',
+            data:{'modal_addclass':$('#modal_addclass').val()},
+            success:function(data){
+
+                if (data['status']=='ok'){
+
+                    location.href="/classes/";
+
+                }else{
+                    $('#messageerrorr').text(data['message'])
+                }
+
+            }
+        })
+
+    }
+    function cancleSend(){
+        document.getElementById('modal').classList.add('hide');
+        document.getElementById('shadow').classList.add('hide');
+    }
+    //编辑班级
+    function editorstudentShow(ths){
+        document.getElementById('editorclass-modal').classList.remove('hide');
+        document.getElementById('editorclass-shadow').classList.remove('hide');
+        var row = $(ths).parent().prevAll();
+        var content = $(row[1]).text();
+        $('#editorclass-title').val(content);
+        var contentId = $(row[2]).text();
+        $('#editorclass-id').val(contentId)
+    }
+    function editorcancleSend() {
+        document.getElementById('editorclass-modal').classList.add('hide');
+        document.getElementById('editorclass-shadow').classList.add('hide');
+    }
+    function editorstudentSend(){
+        $.ajax({
+            url:'/modal_editorclass/',
+            type:'GET',
+            data:{'nid':$('#editorclass-id').val(),"title":$('#editorclass-title').val()},
+            success:function(data){
+                  if (data['status']=='success'){
+                    location.href='/classes/'
+
+                }else{
+                    $('#editorstudent-messageerrorr').text(data['message'])
+                }
+            }
+        })
+    }
+    // 对话框删除
+    function deleteclassSend(ths){
+        var row = $(ths).parent().prevAll();
+        var nid = $(row[2]).text();
+        $.ajax({
+            url:"/modal_deleteclass/",
+            type:'POST',
+            data:{'nid':nid},
+            success:function (data) {
+                 if (data['status']=='success'){
+                    location.reload()
+                }else{
+                    alert(删除失败)
+                }
+            }
+        })
+
+    }
+</script>
+</body>
+</html>

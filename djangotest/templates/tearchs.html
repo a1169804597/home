@@ -1,0 +1,129 @@
+{% extends 'home.html' %}
+{% block title %}老师{% endblock %}
+{% block content_extends %}
+<p><a href="/add_tearch/">添加老师</a>|<a id="add_tearch">对话框添加</a></p>
+{% endblock %}
+{% block content %}
+<p>老师列表</p><a href="/students/"></a>
+    <table border="1px">
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>教师</th>
+                <th>班级</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tearch in tearchs_list.values %}
+                <tr>
+                    <td>{{ tearch.tid }}</td>
+                    <td>{{ tearch.name }}</td>
+                    <td>
+                        {% for tearch in tearch.titles %}
+                            {{ tearch }}
+                        {%  endfor %}
+                    </td>
+                    <td><a href="/editor_tearch/?tid={{ tearch.tid }}">编辑</a>|
+                        <a href="/deleteclass/?nid={{ class.id }}">删除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div id="shadow" class="shadow hide"></div>
+    <div id="loading" class="loading hide"></div>
+    <div id="modal" class="modal hide">
+        <p>姓名：<input id="add_name" name="add_name" placeholder="姓名"></p>
+        <select name="class_name" id="class_name" multiple size="7" >
+
+        </select>
+        <p><input id="add_submit" type="submit" value="提交"></p>
+    </div>
+     <style>
+        .hide{
+            display: none;
+        }
+        .shadow{
+            position: fixed;
+            right: 0;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            background-color: #000;
+            opacity: 0.4;
+            z-index: 999;
+        }
+        .loading{
+            position: fixed;
+            width:60px;
+            height:60px;
+            left:50%;
+            top:50%;
+            margin-top: -30px;
+            margin-left:-30px;
+            background-image:url("/static/imag/loading.gif");
+        }
+        .modal{
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            width: 300px;
+            height: 200px;
+            margin-top:-100px ;
+            margin-left: -150px;
+            background-color: #eeeeee;
+            z-index: 1000;
+        }
+    </style>
+<script>
+    $(function() {
+        add_tearch();
+        add_submit();
+    });
+    function add_tearch() {
+            $('#add_tearch').click(function () {
+                $("#shadow,#loading").removeClass('hide');
+                // 发送ajax请求，获取班级信息，再class_name下拉框中生成
+                // option
+                $.ajax({
+                    url:'/modal_add_tearch/',
+                    type:'GET',
+                    success:function (data) {
+                        // json动态添加标签
+                        $.each(data.class_list,function (i,row) {
+                            var tag = document.createElement('option');
+                            tag.innerHTML = row.title;
+                            tag.setAttribute('value',row.id);
+                            $("#class_name").append(tag);
+                            // 移除加载框出现数据
+                            $("#loading").addClass('hide');
+                            $("#modal").removeClass('hide');
+                        })
+                    }
+                })
+            })
+    }
+    function add_submit() {
+        $('#add_submit').click(function () {
+            var add_name = $("#add_name").val();
+            var class_name = $('#class_name').val();
+            $.ajax({
+                url:'/modal_add_tearch/',
+                type:'POST',
+                data:{'t_name':add_name,'class_id_list':class_name},
+                traditional:true,
+                success:function (data) {
+                    if (data.status == 'success'){
+                        location.reload()
+                    }else{
+                        alert(data.message)
+                    }
+                }
+            })
+        })
+    }
+</script>
+{% endblock %}
+
+

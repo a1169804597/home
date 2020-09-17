@@ -1,0 +1,138 @@
+卷 软件工具 的文件夹 PATH 列表
+卷序列号为 EEB2-12EB
+D:\PYTHON\WORKSPACE\小项目小工具\25.富文本编辑和AJAX提交评论
+│  1.txt
+│  db.sqlite3
+│  manage.py
+│  requirements.txt
+│  
+├─4解析库的使用
+│      1.py
+│      2.py
+│      data.csv
+│      explore.txt
+│      test.html
+│      
+├─blog
+│  │  admin.py
+│  │  apps.py
+│  │  models.py
+│  │  tests.py
+│  │  urls.py
+│  │  views.py
+│  │  __init__.py
+│  │  
+│  ├─migrations
+│  │  │  __init__.py
+│  │  │  
+│  │  └─__pycache__
+│  │          __init__.cpython-37.pyc
+│  │          
+│  ├─static
+│  │  └─blog
+│  │          blog.css
+│  │          
+│  ├─templates
+│  │  └─blog
+│  │          blogs_with_date.html
+│  │          blogs_with_type.html
+│  │          blog_detail.html
+│  │          blog_list.html
+│  │          
+│  └─__pycache__
+│          admin.cpython-37.pyc
+│          models.cpython-37.pyc
+│          urls.cpython-37.pyc
+│          views.cpython-37.pyc
+│          __init__.cpython-37.pyc
+│          
+├─comment
+│  │  admin.py
+│  │  apps.py
+│  │  forms.py
+│  │  models.py
+│  │  tests.py
+│  │  urls.py
+│  │  views.py
+│  │  __init__.py
+│  │  
+│  ├─migrations
+│  │  │  __init__.py
+│  │  │  
+│  │  └─__pycache__
+│  │          __init__.cpython-37.pyc
+│  │          
+│  └─__pycache__
+│          admin.cpython-37.pyc
+│          forms.cpython-37.pyc
+│          models.cpython-37.pyc
+│          urls.cpython-37.pyc
+│          views.cpython-37.pyc
+│          __init__.cpython-37.pyc
+│          
+├─media
+│  └─upload
+├─mysite
+│  │  forms.py
+│  │  settings.py
+│  │  urls.py
+│  │  views.py
+│  │  wsgi.py
+│  │  __init__.py
+│  │  
+│  └─__pycache__
+│          forms.cpython-37.pyc
+│          settings.cpython-37.pyc
+│          urls.cpython-37.pyc
+│          views.cpython-37.pyc
+│          wsgi.cpython-37.pyc
+│          __init__.cpython-37.pyc
+│          
+├─read_statistics
+│  │  admin.py
+│  │  apps.py
+│  │  models.py
+│  │  tests.py
+│  │  utils.py
+│  │  views.py
+│  │  __init__.py
+│  │  
+│  ├─migrations
+│  │  │  __init__.py
+│  │  │  
+│  │  └─__pycache__
+│  │          __init__.cpython-37.pyc
+│  │          
+│  └─__pycache__
+│          admin.cpython-37.pyc
+│          models.cpython-37.pyc
+│          utils.cpython-37.pyc
+│          __init__.cpython-37.pyc
+│          
+├─static
+│  │  base.css
+│  │  home.css
+│  │  jquery-1.12.4.min.js
+│  │  
+│  └─bootstrap-3.3.7
+│      ├─css
+│      │      bootstrap.min.css
+│      │      bootstrap.min.css.map
+│      │      
+│      ├─fonts
+│      │      glyphicons-halflings-regular.eot
+│      │      glyphicons-halflings-regular.svg
+│      │      glyphicons-halflings-regular.ttf
+│      │      glyphicons-halflings-regular.woff
+│      │      glyphicons-halflings-regular.woff2
+│      │      
+│      └─js
+│              bootstrap.min.js
+│              
+└─templates
+        base.html
+        error.html
+        home.html
+        login.html
+        register.html
+        

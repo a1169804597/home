@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑学生表</title>
+</head>
+<body>
+<form method="POST" action="">
+    <input type="text" name="editor" value="{{ result.name }}">
+    <select name="class_name">
+          {% for class in class_list %}
+                {% if result.class_id == class.id %}
+                    <option selected value="{{class.id}}">{{ class.title }}</option>
+                {% else  %}
+                    <option value="{{class.id}}">{{ class.title }}</option>
+                {% endif %}
+          {% endfor %}
+    </select>
+    <input type="submit" value="修改">
+</form>
+
+
+</body>
+</html>

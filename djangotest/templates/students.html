@@ -1,0 +1,127 @@
+{% extends 'home.html' %}
+{% block title %}学生列表{% endblock %}
+{% block content %}
+<p>这个一个同学列表</p>
+    <a class='btn btn-default' href="/addstudent/">新增学生</a>
+    <a id="addstudent">输入框新增学生</a>
+    <table>
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>班级</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.title }}</td>
+                    <td><a href="/editorstudent/?nid={{ student.id }}">编辑</a>|<a class="editor-student" clss='{{ student.class_id }}'>对话框编辑</a>|<a class="delect" href="/deletestudent/?nid={{ student.id }}">删除</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <style>
+        .hide{
+            display: none;
+        }
+        .shadow{
+            position: fixed;
+            right: 0;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            background-color: #000;
+            opacity: 0.4;
+            z-index: 999;
+        }
+        .modal{
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            width: 300px;
+            height: 200px;
+            margin-top:-100px ;
+            margin-left: -150px;
+            background-color: #eeeeee;
+            z-index: 1000;
+        }
+    </style>
+    <div id="shadow" class="shadow hide">  </div>
+    <div id="modal" class="modal hide">
+        姓名：<input id="addname" type="text" placeholder="姓名">
+        <select>
+            {% for class in class_list %}
+                班级：<option id='addclassname' value="{{ class.id }}"> {{ class.title }} </option>
+            {% endfor %}
+        </select>
+        <input id="addstudent_button" type="button" value="提交">
+        <span id="addmessage" style="color:red;"></span>
+    </div>
+    <!--编辑框-->
+    <div id="editor-modal" class="modal hide">
+        <input type="text" id="editor-id" style="display:none;">
+        姓名：<input id="editor-name" type="text">
+        <select id="editor-slect">
+            {% for student in students %}
+            班级：<option id='editor-classname' value="{{ student.class_id }}">{{ student.title }}</option>
+            {% endfor %}
+        </select>
+        <input type="button" id='editor-button' value="更新">
+        <span id="editor-message" style="color:red;"></span>
+
+    </div>
+    <!--对话框添加-->
+    <script>
+        $('#addstudent').click(function () {
+            document.getElementById('shadow').classList.remove('hide');
+            document.getElementById('modal').classList.remove('hide');
+        });
+        $('#addstudent_button').click(function () {
+            $.ajax({
+                url:'/modal_addstudent/',
+                type:'POST',
+                data:{'studentname':$('#addname').val(),'class_id':$('#addclassname').val()},
+                success:function (data) {
+                    if(data.status=='success'){
+                        location.reload()
+                    }else {
+                        $('#addmessage').text(data.message)
+                    }
+                }
+            })
+        })
+    //对话框编编
+        $('.editor-student').click(function () {
+            document.getElementById('shadow').classList.remove('hide');
+            document.getElementById('editor-modal').classList.remove('hide');
+            var row = $(this).parent().prevAll();
+            var class_id = $(this).attr('clss');
+            var class_title = $(row[0]).text();
+            var student_id = $(row[2]).text();
+            var student_name = $(row[1]).text();
+            $('#editor-id').val(student_id)
+            $("#editor-classname").val(class_title);
+            $('#editor-name').val(student_name);
+            $('#editor-slect').val(class_id)
+        })
+        $("#editor-button").click(function(){
+
+            $.ajax({
+                url:'/modal_editorstudent/',
+                type:'POST',
+                data:{'nid':$("#editor-id").val(),'student_name':$('#editor-name').val(),
+                       'class_id':$('#editor-slect').val()},
+                success:function(data){
+                    if(data.status=='success'){
+                        location.reload()
+                    }else {
+                        $('#editor-message').val(data.message)
+                    }
+                }
+            })
+        })
+    </script>
+{% endblock %}

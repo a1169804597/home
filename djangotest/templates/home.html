@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}首页{% endblock %}</title>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="/static/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+    <ul class="nav nav-pills nav-stacked">
+     <li role="presentation"><a href="/">首页</a></li>
+     <li role="presentation" ><a href="/students/">学生</a></li>
+     <li role="presentation"><a href="/tearchs/">老师</a></li>
+    <li role="presentation"><a href="/classes/">班级</a></li>
+    </ul>
+    {% block content_extends %}{% endblock %}
+    {% block content %}{% endblock %}
+</body>
+</html>

@@ -27,6 +27,12 @@ urlpatterns = [
     path('comment/', include('comment.urls')),
     path('likes/', include('likes.urls')),
     path('user/', include('user.urls')),
+
+
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns.append(path('__debug__/',include(debug_toolbar.urls)))

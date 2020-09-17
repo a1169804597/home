@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑老师</title>
+</head>
+<body>
+    <p>编辑老师信息表</p>
+    <form method="POST" action="/editor_tearch/?t_id={{ t_id }}">
+        <input type="text" name="t_c_ids" value="{{ tearch_class_ids }}" style="display: none">
+        <p>姓名<input type="text" name="t_name" value="{{ tearch_name.tname }}"></p>
+        <p>班级
+            <select multiple name="editor_class_ids" size="7">
+                {% for class in class_list %}
+                    {% if class.id in current_class_ids %}
+                        <option value="{{ class.id }}" selected>{{ class.title }}</option>
+                    {% else %}
+                         <option value="{{ class.id }}">{{ class.title }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        <p><input type="submit" value="更新"> </p>
+        </p>
+    </form>
+</body>
+</html>

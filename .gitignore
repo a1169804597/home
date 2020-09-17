@@ -1,0 +1,6 @@
+/.idea
+
+*.pyc
+ghost
+driver.log
+*.idea/
